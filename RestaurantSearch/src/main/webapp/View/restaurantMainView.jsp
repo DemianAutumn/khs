@@ -126,6 +126,13 @@
 					</div>
 				</div>
 				<!-- /SIGN IN -->
+				
+				<div class="pull-right nav hidden-xs">
+					<a href="page-about-us.html"><i class="fa fa-angle-right"></i> About</a>
+					<a href="boardList.do"><i class="fa fa-angle-right"></i> Board</a>
+					<a href="contact-us.html"><i class="fa fa-angle-right"></i> Contact</a>
+				</div>
+				
 			</div>
 
 	<!-- 		</div> -->

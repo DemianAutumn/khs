@@ -25,6 +25,12 @@
     <bean class="restaurant.controller.MemberRegiController"/>
     <bean class="restaurant.dao.MemberDaoImpl" />
     
+    <!-- 게시판 -->
+    <bean class="restaurant.controller.BoardListController" />
+    <bean class="restaurant.controller.WriteController" />
+    <bean class="restaurant.dao.BoardDaoImpl" />
+
+    
     <!-- 1.messageSource(리소스번들 파일) 유효성검사 문자열 메세지,자주사용 문구-->
     <bean id="messageSource"
   class="org.springframework.context.support.ResourceBundleMessageSource">
