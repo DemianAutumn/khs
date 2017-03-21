@@ -164,8 +164,8 @@
 
 						<!-- blog item -->
 						<div class="item">
-						
-							<!-- BoardList -->
+					
+<!-- Board Write -->
 
 							
 <spring:hasBindErrors name="command"/>
@@ -199,10 +199,11 @@
 	          onclick="location.href='boardList.do'">
 </form>
 
-<!-- BoardList -->				
+<!-- Board Wrtie -->				
 		
 						
-						
+					<!-- Board Search -->
+					
 						<div class="form-group">
 							<div class="col-md-1">
 								<select name="keyField">
@@ -221,7 +222,9 @@
 										</span>
 									</div>							
 								</div>
-
+								
+						<!-- Board Search -->
+						
 				</section>
 
 			</div>
