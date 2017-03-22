@@ -12,8 +12,8 @@
 	                    type="restaurant.dto.MemDetInfoDto"/>
 	   <typeAlias alias="MemSimInfoDto" 
 	                    type="restaurant.dto.MemSimInfoDto"/> 
-	   <typeAlias alias="BoardCommand" 
-	                    type="restaurant.board.domain.BoardCommand"/>
+<!-- 	   <typeAlias alias="BoardCommand" 
+	                    type="restaurant.board.domain.BoardCommand"/> -->
 	                                            
 	</typeAliases> 
 	
@@ -21,7 +21,7 @@
 	<mappers>
 	    <mapper resource="restaurant/query/restaurantQuery.xml"/>
 	    <mapper resource="restaurant/query/memDetInfoQuery.xml"/>
-	    <mapper resource="restaurant/dao/BoardMapper.xml"/>
+	    <!-- <mapper resource="restaurant/dao/BoardMapper.xml"/> -->
 	</mappers> 
 	
 </configuration>
