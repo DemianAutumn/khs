@@ -116,8 +116,9 @@ public class MemDetInfoDto {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "MemDetInfoDto[memberId;="+memberId+",birthDate;="+birthDate+",gender;="+
-		gender+",phoneNum="+phoneNum+"]";
+		return "MemDetInfoDto[memberId="+memberId+", birthDate="+birthDate+", gender="+
+		gender+",phoneNum="+phoneNum+",emailCheck="+emailCheck+" ,selfIntro="+selfIntro+", photoPath="+photoPath+
+		", memberType="+memberType+", interestFood="+interestFood+", nickname="+nickname+"]";
 	}
 
 }
