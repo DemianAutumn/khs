@@ -11,7 +11,7 @@
     		    a.*,
     		        rownum rnum
     		FROM (SELECT   *
-    				      FROM springboard2
+    				      FROM springboard
     				<where>  
     					<if test="keyWord!=null and keyField=='title'">
     						title like '%' || #{keyWord} || '%'					
@@ -36,7 +36,7 @@
  	
  	<select id="selectCount" parameterType="map" resultType="Integer">
  	    SELECT  count(*)
-    	FROM springboard2
+    	FROM springboard
     	<where>
     					<if test="keyWord!=null and keyField=='title'">
     						title like '%' || #{keyWord} || '%'					
@@ -57,24 +57,24 @@
  	
 	<!-- 최대값구하기  -->
  	<select id="getNewSeq" resultType="int">
- 	    select max(seq) from springboard2
+ 	    select max(seq) from springboard
  	</select>
  	
  	<insert id="insertBoard" parameterType="RestaurantDto">
- 	  insert into springboard2(seq,writer,title,content,pwd,hit,regdate,filename)
+ 	  insert into springboard(seq,writer,title,content,pwd,hit,regdate,filename)
  	  values(#{seq},#{writer},#{title},#{content},#{pwd},0,sysdate,
  	  #{filename,jdbcType=VARCHAR})
  	</insert>
  	
  	<!--조회수 증가  -->
  	<update id="updateHit"  parameterType="Integer">
- 	    update springboard2 set hit=hit+1 where seq=#{seq}
+ 	    update springboard set hit=hit+1 where seq=#{seq}
  	</update>
  	
  	<!-- 레코드 한개 얻어오기 -->
  	<select id="selectBoard" resultType="RestaurantDto"
  	                                      parameterType="Integer">
- 	    select * from springboard2 where seq=#{seq}
+ 	    select * from springboard where seq=#{seq}
  	</select>
  	
  	

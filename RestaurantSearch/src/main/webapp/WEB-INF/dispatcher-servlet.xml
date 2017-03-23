@@ -29,8 +29,8 @@
     <bean class="restaurant.controller.BoardListController" />
     <bean class="restaurant.controller.WriteController" />
     <bean class="restaurant.dao.BoardDaoImpl" />
-    <bean class="restaurant.board.controller.DetailController" />
-    <bean class="restaurant.board.controller.UpdateController" />
+    <bean class="restaurant.controller.DetailController" />
+    <bean class="restaurant.controller.UpdateController" />
 
     
     <!-- 1.messageSource(리소스번들 파일) 유효성검사 문자열 메세지,자주사용 문구-->

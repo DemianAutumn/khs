@@ -23,7 +23,7 @@ public class DetailController {
 	@Autowired
 	private BoardDao boardDao;
 
-    @RequestMapping("/board/detail.do")
+    @RequestMapping("/detail.do")
     //int seq=Integer.parseInt(request.getParameter("seq"));
     public ModelAndView process(@RequestParam("seq") int seq){
   
@@ -45,7 +45,7 @@ public class DetailController {
     }
     
     //파일 다운로드
-    @RequestMapping("/board/file.do")
+    @RequestMapping("/file.do")
     public ModelAndView download(@RequestParam("filename") String filename){
     	
     	File downloadFile =new File(FileUtil.UPLOAD_PATH+"/"+filename);

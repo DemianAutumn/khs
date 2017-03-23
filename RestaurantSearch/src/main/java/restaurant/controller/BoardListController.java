@@ -1,30 +1,100 @@
 package restaurant.controller;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
-import org.apache.log4j.Logger;
+//---------로그에 출력할 수 있도록 설정(Annotation)--
+import org.apache.log4j.Logger;//로그 객체 생성
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+//---------페이징 처리 및 메서드 호출---------------
+import restaurant.dao.BoardDao;
+import restaurant.board.domain.BoardCommand;//DTO
+import restaurant.board.util.PagingUtil;
+//---------------------------------------------------
 
-//유효성 검사->입력->ok->boardWriter.jsp 화면에 출력
-@Controller
+@Controller 
 public class BoardListController {
+	//로그객체
+	private Logger log = Logger.getLogger(this.getClass());
 	
-	private Logger log=Logger.getLogger(this.getClass());//클래스 이름 불러오기
-
-		@RequestMapping("/boardList.do")
-	public ModelAndView handle() throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("BoardListController가 처리함!");
-		//글목록보기에서 list()호출
-		//ArrayList list=dao.list();
-		//-----------------------
-		ModelAndView mav=new ModelAndView("boardList");//이동할 페이지명
-		//mav.setViewName("word");//이동할 파일명만 지정
-		//reqeust.setAttribute()=>mav.addObject()와 기능이 같다.
-		mav.addObject("message2","스프링 기본틀 완성" );
+	@Autowired
+	private BoardDao boardDao;//Setter Method호출할 필요가 없다.
+	
+	//pageNum,keyField,keyWord(검색분야,검색어)
+	@RequestMapping("/boardList.do")
+	public ModelAndView process
+	   (@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+	    @RequestParam(value="keyField",defaultValue="") String keyField,
+	    @RequestParam(value="keyWord",defaultValue="") String keyWord){
+		
+		if(log.isDebugEnabled()){
+			System.out.println("ListController의  list.do");
+			log.debug("currentPage : " + currentPage);
+			log.debug("keyField : " + keyField);
+			log.debug("keyWord : " + keyWord);
+		}
+		//검색분야,검색어를 Map객체 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyField", keyField);//검색분야
+		map.put("keyWord", keyWord);//검색어
+		
+		//총레코드수 
+		int count = boardDao.getRowCount(map);
+	    
+		//PagingUtil page = new PagingUtil(currentPage, count, 10,10, "list.do");
+		PagingUtil page = new PagingUtil(currentPage, count, 3,3, "list.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<BoardCommand> list = null;
+		if(count > 0){
+			System.out.println("여기는 DAO 호출");
+			list = boardDao.list(map);
+		}else{
+			list = Collections.emptyList();
+		}
+		
+		System.out.println("BoardListController클래스의 count="+count);
+		
+		ModelAndView  mav = new ModelAndView();
+		mav.setViewName("boardList");//boardList.jsp로 페이지 이동
+		mav.addObject("count", count);//총레코드수
+		mav.addObject("list", list);//화면에 출력할 데이터
+		mav.addObject("pagingHtml", page.getPagingHtml());//링크문자열
+		
 		return mav;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
