@@ -48,7 +48,7 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 
 	public void update(BoardCommand board) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void delete(Integer seq) {

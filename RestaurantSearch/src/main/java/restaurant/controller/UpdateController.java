@@ -30,7 +30,7 @@ public class UpdateController {
 	private BoardDao boardDao; //멤버변수위에 @Autowired->Setter X
 
 	//형식)@RequstMapping(value="/요청명령어",method=RequestMethod.GET(Get방식)
-	@RequestMapping(value="/board/update.do",method=RequestMethod.GET)
+	@RequestMapping(value="/update.do",method=RequestMethod.GET)
 	public ModelAndView form(@RequestParam("seq") int seq){
 		
 		BoardCommand boardCommand =boardDao.selectBoard(seq);
@@ -40,7 +40,7 @@ public class UpdateController {
 	
 
 	//수정을 다하고나서 수정버튼 눌렀다면(에러메세지(유효성검사)
-	@RequestMapping(value="/board/update.do",method=RequestMethod.POST)
+	@RequestMapping(value="/update.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command") BoardCommand command,BindingResult result){
 		if(log.isDebugEnabled()){
 			log.debug("BoardCommand="+command);//toString()
@@ -97,7 +97,7 @@ public class UpdateController {
 	    	}//if
 		  }
 		}
-		return "redirect:/board/list.do"; //ListController->boardList.jsp로 이동
+		return "redirect:/boardList.do"; //ListController->boardList.jsp로 이동
 	}
 }
 
